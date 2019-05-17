@@ -31,7 +31,7 @@ interface HomeProps {
 class Home extends Component<HomeProps> {
   componentDidMount() {
     if (!this.props.isLogined) {
-      this.props.navigation.navigate('SignUp')
+      this.props.navigation.navigate('Entry')
     }
   }
 
