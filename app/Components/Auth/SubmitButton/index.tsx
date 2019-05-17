@@ -6,13 +6,15 @@ import styles from './styles'
 interface SubmitButtonProps {
   onPress: () => any,
   title: string,
+  disabled?: boolean,
 }
 
 class SubmitButton extends Component<SubmitButtonProps> {
   render() {
-    const { onPress, title } = this.props
+    const { onPress, title, disabled } = this.props
     return (
       <TouchableOpacity
+        disabled={disabled}
         style={styles.container}
         onPress={onPress}>
         <Text>{title}</Text>
