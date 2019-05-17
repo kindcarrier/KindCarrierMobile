@@ -13,7 +13,7 @@ class Entry extends Component<EntryProps> {
   }
 
   goToLogIn = () => {
-
+    this.props.navigation.navigate('LogIn')
   }
 
   render() {

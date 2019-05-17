@@ -13,6 +13,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation"
 import Home from 'Screens/Home'
 import Entry from 'Screens/Entry'
 import SignUp from 'Screens/SignUp'
+import LogIn from 'Screens/LogIn'
 
 const AppNavigator = createStackNavigator(
   {
@@ -24,6 +25,9 @@ const AppNavigator = createStackNavigator(
     },
     SignUp: {
       screen: SignUp,
+    },
+    LogIn: {
+      screen: LogIn,
     },
   },
   {

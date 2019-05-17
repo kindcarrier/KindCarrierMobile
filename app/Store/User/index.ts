@@ -2,7 +2,7 @@ import UserData from 'Types/user'
 
 import {
   SIGNUP_USER,
-  SIGNIN_USER,
+  LOGIN_USER,
   SIGNOUT_USER,
 } from './actions'
 
@@ -19,7 +19,7 @@ const initialState = {
 export default (state: UserReducerState = initialState, action: any): UserReducerState => {
   switch (action.type) {
     case SIGNUP_USER:
-    case SIGNIN_USER:
+    case LOGIN_USER:
       return { ...state, user: action.payload, isLogined: true }
       case SIGNOUT_USER:
       return { ...initialState }

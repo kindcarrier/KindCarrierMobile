@@ -1,7 +1,7 @@
 import UserData from 'Types/user'
 
 export const SIGNUP_USER = 'USER/SIGNUP'
-export const SIGNIN_USER = 'USER/SIGNIN'
+export const LOGIN_USER = 'USER/LOGIN_USER'
 export const SIGNOUT_USER = 'USER/SIGNOUT'
 
 export function setUserAfterSignUp (user: UserData) {
@@ -11,9 +11,9 @@ export function setUserAfterSignUp (user: UserData) {
   }
 }
 
-export function setUserAfterSignIn (user: UserData) {
+export function setUserAfterLogIn (user: UserData) {
   return {
-    type: SIGNIN_USER,
+    type: LOGIN_USER,
     payload: user,
   }
 }

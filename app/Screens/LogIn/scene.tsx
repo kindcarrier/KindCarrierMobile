@@ -5,34 +5,28 @@ import Container from 'Components/Auth/Container'
 import TextInput from 'Components/Auth/TextInput'
 import SubmitButton from 'Components/Auth/SubmitButton'
 import validateEmail from 'Utils/validateEmail'
-import signUp from 'Api/signUp'
+import logIn from 'Api/logIn'
 import { NavigationScreenProp } from 'react-navigation'
 import UserData from 'Types/user'
 
-interface SignUpProps {
+interface LogInProps {
   navigation: NavigationScreenProp<any>,
-  setUserAfterSignUp: (user: UserData) => any
+  setUserAfterLogIn: (user: UserData) => any
 }
 
-interface SignUpState {
-  name: string,
+interface LogInState {
   email: string,
   password: string,
 }
 
-class SignUp extends Component<SignUpProps, SignUpState> {
-  constructor(props: SignUpProps) {
+class LogIn extends Component<LogInProps, LogInState> {
+  constructor(props: LogInProps) {
     super(props)
 
     this.state = {
-      name: '',
       email: '',
       password: '',
     }
-  }
-
-  onNameChange = (name: string) => {
-    this.setState({ name })
   }
 
   onEmailChange = (email: string) => {
@@ -44,17 +38,16 @@ class SignUp extends Component<SignUpProps, SignUpState> {
   }
 
   isValid = (): boolean => {
-    const { name, password, email } = this.state
-    return validateEmail(email) && !!name && !!password
+    const { password, email } = this.state
+    return validateEmail(email) && !!password
   }
 
   submit = async () => {
-    const { name, email, password } = this.state
+    const { email, password } = this.state
     try {
-      const [firstName, ...tail] = name.split(' ')
-      const lastName = tail.join(' ') 
-      const user = await signUp({ firstName, lastName, email, password })
-      this.props.setUserAfterSignUp(user)
+
+      const user = await logIn({ email, password })
+      this.props.setUserAfterLogIn(user)
       this.props.navigation.navigate('Home')
     } catch (e) {
       Alert.alert('Ошибка', e.message)
@@ -65,11 +58,6 @@ class SignUp extends Component<SignUpProps, SignUpState> {
     return (
       <View style={styles.container}>
         <Container>
-          <TextInput
-            placeholder='name'
-            autoCapitalize
-            onTextChange={this.onNameChange}
-          />
           <TextInput
             placeholder='email'
             keyboardType='email-address'
@@ -82,7 +70,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
           />
           <View style={styles.submit}>
             <SubmitButton
-              title='Регистрация'
+              title='Войти'
               disabled={!this.isValid()}
               onPress={this.submit} />
           </View>
@@ -92,4 +80,4 @@ class SignUp extends Component<SignUpProps, SignUpState> {
   }
 }
 
-export default SignUp
+export default LogIn
