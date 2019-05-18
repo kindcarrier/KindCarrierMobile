@@ -9,19 +9,44 @@
  */
 
 
-import { createStackNavigator, createAppContainer, createBottomTabNavigator } from "react-navigation"
+import {
+  createStackNavigator,
+  createAppContainer,
+  createBottomTabNavigator,
+  NavigationScreenProp
+} from "react-navigation"
 import Home from 'Screens/Home'
 import Entry from 'Screens/Entry'
 import SignUp from 'Screens/SignUp'
 import LogIn from 'Screens/LogIn'
 import Map from 'Screens/Map'
+import Chat from 'Screens/Chat'
+import Profile from 'Screens/Profile'
 
 const TabNavigator = createBottomTabNavigator({
   Home: {
     screen: Home,
+    navigationOptions: ({ navigation }: any) => ({
+      title: 'Главная',
+    }),
   },
   Map: {
     screen: Map,
+    navigationOptions: ({ navigation }: any) => ({
+      title: 'Карта',
+    }),
+  },
+  Chat: {
+    screen: Chat,
+    navigationOptions: ({ navigation }: any) => ({
+      title: 'Чат',
+    }),
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: ({ navigation }: any) => ({
+      title: 'Профиль',
+    }),
   },
 })
 

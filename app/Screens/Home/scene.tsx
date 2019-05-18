@@ -11,7 +11,6 @@
 import React, {Component} from 'react';
 import {Dimensions, Text, View, TouchableOpacity} from 'react-native';
 import { NavigationScreenProp } from 'react-navigation'
-import Map from 'Components/Map'
 
 import UserData from 'Types/user'
 import styles from './styles'
