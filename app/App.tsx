@@ -22,6 +22,20 @@ import LogIn from 'Screens/LogIn'
 import Map from 'Screens/Map'
 import Chat from 'Screens/Chat'
 import Profile from 'Screens/Profile'
+import EditProfile from 'Screens/EditProfile'
+
+const ProfileNavigator = createStackNavigator(
+  {
+    Profile: {
+      screen: Profile,
+    },
+    EditProfile: {
+      screen: EditProfile,
+    },
+  },
+  {
+    headerMode: 'none',
+  })
 
 const TabNavigator = createBottomTabNavigator({
   Home: {
@@ -43,7 +57,7 @@ const TabNavigator = createBottomTabNavigator({
     }),
   },
   Profile: {
-    screen: Profile,
+    screen: ProfileNavigator,
     navigationOptions: ({ navigation }: any) => ({
       title: 'Профиль',
     }),

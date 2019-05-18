@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 20,
     backgroundColor: '#F5FCFF',
   },
@@ -23,6 +23,10 @@ export default StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
+  },
+  submit: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
 });
