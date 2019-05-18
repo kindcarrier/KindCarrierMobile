@@ -8,6 +8,7 @@ import validateEmail from 'Utils/validateEmail'
 import signUp from 'Api/signUp'
 import { NavigationScreenProp } from 'react-navigation'
 import UserData from 'Types/user'
+import Loader from 'Components/Loader'
 
 interface SignUpProps {
   navigation: NavigationScreenProp<any>,
@@ -18,6 +19,7 @@ interface SignUpState {
   name: string,
   email: string,
   password: string,
+  inProgress: boolean,
 }
 
 class SignUp extends Component<SignUpProps, SignUpState> {
@@ -28,6 +30,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
       name: '',
       email: '',
       password: '',
+      inProgress: false,
     }
   }
 
@@ -51,6 +54,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
   submit = async () => {
     const { name, email, password } = this.state
     try {
+      this.setState({ inProgress: true })
       const [firstName, ...tail] = name.split(' ')
       const lastName = tail.join(' ') 
       const user = await signUp({ firstName, lastName, email, password })
@@ -58,10 +62,13 @@ class SignUp extends Component<SignUpProps, SignUpState> {
       this.props.navigation.navigate('Home')
     } catch (e) {
       Alert.alert('Ошибка', e.message)
+    } finally {
+      this.setState({ inProgress: false })
     }
   }
 
   render() {
+    const { inProgress } = this.state
     return (
       <View style={styles.container}>
         <Container>
@@ -83,10 +90,11 @@ class SignUp extends Component<SignUpProps, SignUpState> {
           <View style={styles.submit}>
             <SubmitButton
               title='Регистрация'
-              disabled={!this.isValid()}
+              disabled={!this.isValid() || inProgress}
               onPress={this.submit} />
           </View>
         </Container>
+        {inProgress && <Loader />}
       </View>
     )
   }
