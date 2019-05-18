@@ -9,16 +9,26 @@
  */
 
 
-import { createStackNavigator, createAppContainer } from "react-navigation"
+import { createStackNavigator, createAppContainer, createBottomTabNavigator } from "react-navigation"
 import Home from 'Screens/Home'
 import Entry from 'Screens/Entry'
 import SignUp from 'Screens/SignUp'
 import LogIn from 'Screens/LogIn'
+import Map from 'Screens/Map'
+
+const TabNavigator = createBottomTabNavigator({
+  Home: {
+    screen: Home,
+  },
+  Map: {
+    screen: Map,
+  },
+})
 
 const AppNavigator = createStackNavigator(
   {
     Home: {
-      screen: Home,
+      screen: TabNavigator,
     },
     Entry: {
       screen: Entry,
