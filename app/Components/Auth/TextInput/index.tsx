@@ -8,14 +8,16 @@ interface TextInputProps {
   autoCapitalize?: boolean
   keyboardType?: 'default' | 'email-address'
   secureTextEntry?: boolean,
+  value?: string,
 }
 
 class TextInput extends Component <TextInputProps> {
   render () {
-    const { placeholder, onTextChange, autoCapitalize, keyboardType, secureTextEntry } = this.props
+    const { placeholder, onTextChange, autoCapitalize, keyboardType, secureTextEntry, value } = this.props
     return (
       <RNTextInput
         placeholder={placeholder}
+        value={value}
         onChangeText={onTextChange}
         autoCorrect={false}
         autoCapitalize={!!autoCapitalize ? 'words' : 'none'}

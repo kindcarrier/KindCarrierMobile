@@ -4,4 +4,7 @@ export default interface UserData {
   last_name: string,
   email: string,
   token: string,
+  avatar: {
+    url: string | null,
+  }
 }
