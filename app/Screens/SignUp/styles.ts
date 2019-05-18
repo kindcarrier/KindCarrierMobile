@@ -10,4 +10,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  bgImage: {
+    flex: 1,
+  },
+  titleContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 })

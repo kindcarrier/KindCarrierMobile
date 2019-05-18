@@ -17,7 +17,7 @@ class SubmitButton extends Component<SubmitButtonProps> {
         disabled={disabled}
         style={styles.container}
         onPress={onPress}>
-        <Text>{title}</Text>
+        <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     )
   }

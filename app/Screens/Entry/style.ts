@@ -6,6 +6,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  bgImage: {
+    flex: 1,
+  },
   button: {
     height: 50,
     width: '80%',
@@ -14,5 +17,10 @@ export default StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 4,
+  },
+  text: {
+    fontSize: 20,
+    color: 'white',
   }
 })
