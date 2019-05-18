@@ -8,6 +8,7 @@ import validateEmail from 'Utils/validateEmail'
 import logIn from 'Api/logIn'
 import { NavigationScreenProp } from 'react-navigation'
 import UserData from 'Types/user'
+import Loader from 'Components/Loader'
 
 interface LogInProps {
   navigation: NavigationScreenProp<any>,
@@ -17,6 +18,7 @@ interface LogInProps {
 interface LogInState {
   email: string,
   password: string,
+  inProgress: boolean,
 }
 
 class LogIn extends Component<LogInProps, LogInState> {
@@ -26,6 +28,7 @@ class LogIn extends Component<LogInProps, LogInState> {
     this.state = {
       email: '',
       password: '',
+      inProgress: false,
     }
   }
 
@@ -45,16 +48,19 @@ class LogIn extends Component<LogInProps, LogInState> {
   submit = async () => {
     const { email, password } = this.state
     try {
-
+      this.setState({ inProgress: true })
       const user = await logIn({ email, password })
       this.props.setUserAfterLogIn(user)
       this.props.navigation.navigate('Home')
     } catch (e) {
       Alert.alert('Ошибка', e.message)
+    } finally {
+      this.setState({ inProgress: false })
     }
   }
 
   render() {
+    const { inProgress } = this.state
     return (
       <View style={styles.container}>
         <Container>
@@ -71,10 +77,11 @@ class LogIn extends Component<LogInProps, LogInState> {
           <View style={styles.submit}>
             <SubmitButton
               title='Войти'
-              disabled={!this.isValid()}
+              disabled={!this.isValid() || inProgress}
               onPress={this.submit} />
           </View>
         </Container>
+        {inProgress && <Loader />}
       </View>
     )
   }
