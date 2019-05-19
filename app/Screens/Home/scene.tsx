@@ -27,6 +27,8 @@ interface HomeProps {
 
 interface HomeState {
   negotiations: Array<Negotiation>
+  infoVisible: boolean,
+  negotiation: Negotiation | null
 }
 
 const { width, height } = Dimensions.get('screen')
@@ -35,7 +37,9 @@ class Home extends Component<HomeProps, HomeState> {
   constructor(props: HomeProps) {
     super(props)
     this.state = {
-      negotiations: []
+      negotiations: [],
+      infoVisible: false,
+      negotiation: null,
     }
   }
 
@@ -57,7 +61,16 @@ class Home extends Component<HomeProps, HomeState> {
     this.props.navigation.navigate('CreateNegotiation', {title, type})
   }
 
+  onMarkerPress = (negotiation: Negotiation) => {
+    this.setState({ negotiation, infoVisible: true })
+  }
+
+  onCloseInfo = () => {
+    this.setState({ infoVisible: false })
+  }
+
   render() {
+    const { negotiation } = this.state
     console.log(this.state.negotiations)
     return (
       <View style={styles.container}>
@@ -65,6 +78,7 @@ class Home extends Component<HomeProps, HomeState> {
           width={width}
           height={height}
           negotiations={this.state.negotiations}
+          onPress={this.onMarkerPress}
         />
         <View style={styles.block}>
           <TouchableOpacity
@@ -79,6 +93,20 @@ class Home extends Component<HomeProps, HomeState> {
             <Text style={styles.text}>Могу привезти</Text>
           </TouchableOpacity>
         </View>
+        {this.state.infoVisible && <View style={styles.infoContainer}>
+          {negotiation && <View style={styles.infoBlock}>
+            <Text>Название: {negotiation.name}</Text>
+            <Text>Описание: {negotiation.description}</Text>
+            <Text>Стоимость: {negotiation.service_cost}</Text>
+          </View>}
+          <TouchableOpacity
+            style={[styles.button, styles.buttonOk]}
+            onPress={this.onCloseInfo}
+          >
+            <Text style={styles.text}>OK</Text>
+          </TouchableOpacity>
+          
+        </View>}
       </View>
     );
   }

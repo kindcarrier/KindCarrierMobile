@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native'
 
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -29,5 +30,23 @@ export default StyleSheet.create({
   },
   text: {
     color: 'white',
-  }
+  },
+  infoContainer: {
+    position: 'absolute',
+    zIndex: 100,
+    backgroundColor: 'white',
+    top: 200,
+    bottom: 200,
+    left: 20,
+    right: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  infoBlock: {
+    flex: 1,
+  },
+  buttonOk: {
+    marginTop: 50,
+    backgroundColor: 'lightgreen',
+  },
 });
