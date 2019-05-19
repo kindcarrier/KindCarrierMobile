@@ -23,6 +23,7 @@ import Map from 'Screens/Map'
 import Chat from 'Screens/Chat'
 import Profile from 'Screens/Profile'
 import EditProfile from 'Screens/EditProfile'
+import CreateNegotiation from 'Screens/CreateNegotiation'
 
 const ProfileNavigator = createStackNavigator(
   {
@@ -35,21 +36,36 @@ const ProfileNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
-  })
+  }
+)
+
+const HomeNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: Home,
+    },
+    CreateNegotiation: {
+      screen: CreateNegotiation,
+    },
+  },
+  {
+    headerMode: 'none',
+  }
+)
 
 const TabNavigator = createBottomTabNavigator({
   Home: {
-    screen: Home,
+    screen: HomeNavigator,
     navigationOptions: ({ navigation }: any) => ({
       title: 'Главная',
     }),
   },
-  Map: {
-    screen: Map,
-    navigationOptions: ({ navigation }: any) => ({
-      title: 'Карта',
-    }),
-  },
+  // Map: {
+  //   screen: Map,
+  //   navigationOptions: ({ navigation }: any) => ({
+  //     title: 'Карта',
+  //   }),
+  // },
   Chat: {
     screen: Chat,
     navigationOptions: ({ navigation }: any) => ({

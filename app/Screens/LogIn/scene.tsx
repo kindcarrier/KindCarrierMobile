@@ -87,9 +87,9 @@ class LogIn extends Component<LogInProps, LogInState> {
                 title='Войти'
                 disabled={!this.isValid() || inProgress}
                 onPress={this.submit} />
+              {inProgress && <Loader />}
             </View>
           </Container>
-          {inProgress && <Loader />}
         </View>
       </ImageBackground>
     )

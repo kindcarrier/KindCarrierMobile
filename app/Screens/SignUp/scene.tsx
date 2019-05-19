@@ -91,18 +91,18 @@ class SignUp extends Component<SignUpProps, SignUpState> {
               onTextChange={this.onEmailChange}
             />
             <TextInput
-            placeholder='password'
-            secureTextEntry
-            onTextChange={this.onPassworsChange}
-            />
+              placeholder='password'
+              secureTextEntry
+              onTextChange={this.onPassworsChange}
+              />
             <View style={styles.submit}>
               <SubmitButton
                 title='Регистрация'
                 disabled={!this.isValid() || inProgress}
                 onPress={this.submit} />
+              {inProgress && <Loader />}
             </View>
           </Container>
-          {inProgress && <Loader />}
         </View>
       </ImageBackground>
     )

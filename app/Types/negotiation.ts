@@ -1,3 +1,4 @@
+import Address from 'Types/address'
 
 export default interface Negotiation {
   id: number,
@@ -7,4 +8,8 @@ export default interface Negotiation {
   type: number,
   service_cost: number,
   photo: string | null,
+  created_at: string,
+  updated_at: string,
+  address_from: Address,
+  address_to: Address,
 }
