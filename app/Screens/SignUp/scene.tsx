@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { View, Alert } from 'react-native'
+import { View, Alert, ImageBackground } from 'react-native'
 import styles from './styles'
 import Container from 'Components/Auth/Container'
 import TextInput from 'Components/Auth/TextInput'
@@ -9,7 +9,9 @@ import signUp from 'Api/signUp'
 import { NavigationScreenProp } from 'react-navigation'
 import UserData from 'Types/user'
 import Loader from 'Components/Loader'
+import Title from 'Components/Auth/Title'
 
+const background = require('assets/img/background.png')
 interface SignUpProps {
   navigation: NavigationScreenProp<any>,
   setUserAfterSignUp: (user: UserData) => any
@@ -70,32 +72,39 @@ class SignUp extends Component<SignUpProps, SignUpState> {
   render() {
     const { inProgress } = this.state
     return (
-      <View style={styles.container}>
-        <Container>
-          <TextInput
-            placeholder='name'
-            autoCapitalize
-            onTextChange={this.onNameChange}
-          />
-          <TextInput
-            placeholder='email'
-            keyboardType='email-address'
-            onTextChange={this.onEmailChange}
-          />
-          <TextInput
-           placeholder='password'
-           secureTextEntry
-           onTextChange={this.onPassworsChange}
-          />
-          <View style={styles.submit}>
-            <SubmitButton
-              title='Регистрация'
-              disabled={!this.isValid() || inProgress}
-              onPress={this.submit} />
-          </View>
-        </Container>
-        {inProgress && <Loader />}
-      </View>
+      <ImageBackground
+        source={background}
+        style={styles.bgImage}>
+          <View style={styles.container}>
+          <Container>
+              <View style={styles.titleContainer}>
+                <Title title='ВХОД' />
+              </View>
+            <TextInput
+              placeholder='name'
+              autoCapitalize
+              onTextChange={this.onNameChange}
+            />
+            <TextInput
+              placeholder='email'
+              keyboardType='email-address'
+              onTextChange={this.onEmailChange}
+            />
+            <TextInput
+            placeholder='password'
+            secureTextEntry
+            onTextChange={this.onPassworsChange}
+            />
+            <View style={styles.submit}>
+              <SubmitButton
+                title='Регистрация'
+                disabled={!this.isValid() || inProgress}
+                onPress={this.submit} />
+            </View>
+          </Container>
+          {inProgress && <Loader />}
+        </View>
+      </ImageBackground>
     )
   }
 }

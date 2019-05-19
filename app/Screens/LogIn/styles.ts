@@ -6,7 +6,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  bgImage: {
+    flex: 1,
+  },
   submit: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleContainer: {
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
