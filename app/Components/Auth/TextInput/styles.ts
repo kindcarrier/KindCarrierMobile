@@ -8,5 +8,8 @@ export default StyleSheet.create({
     marginBottom: 20,
     borderRadius: 4,
     paddingHorizontal: 20,
-  }
+  },
+  multiline: {
+    height: 200,
+  },
 });
