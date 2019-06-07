@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import { View, TouchableOpacity, Text, ImageBackground } from 'react-native'
+import { View, ImageBackground } from 'react-native'
 import { NavigationScreenProp } from 'react-navigation'
 import styles from './style'
+import Button from './components/Button'
 
 interface EntryProps {
   navigation: NavigationScreenProp<any>,
@@ -24,17 +25,13 @@ class Entry extends Component<EntryProps> {
         source={background}
         style={styles.bgImage}>
         <View style={styles.container}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={this.goToSignUp}>
-            <Text style={styles.text}>РЕГИСТРАЦИЯ</Text>
-          </TouchableOpacity>
+          <Button
+            onPress={this.goToSignUp}
+            text='РЕГИСТРАЦИЯ' />
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={this.goToLogIn}>
-            <Text style={styles.text}>ВХОД</Text>
-          </TouchableOpacity>
+          <Button
+            onPress={this.goToLogIn}
+            text='ВХОД' />
         </View>
       </ImageBackground>
     )
